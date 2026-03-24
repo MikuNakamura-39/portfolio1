@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メソッド一覧 - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <button class="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" data-nav-level="design"></aside>
+
+    <main class="main-content">
+      <header class="doc-header">
+        <div class="doc-category">DESIGN DOCUMENT</div>
+        <h1 class="doc-title">メソッド一覧</h1>
+        <div class="doc-meta">
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-19</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：ナカムラ</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+        </div>
+      </header>
+
+      <div class="doc-body">
+
+        <div class="toc">
+          <div class="toc-title">目次</div>
+          <ol class="toc-list">
+            <li><a href="#sec1">Controller メソッド一覧</a></li>
+            <li><a href="#sec2">Service メソッド一覧</a></li>
+            <li><a href="#sec3">Repository メソッド一覧</a></li>
+            <li><a href="#sec4">共通処理・ユーティリティ</a></li>
+          </ol>
+        </div>
+
+        <section class="section" id="sec1">
+          <h2 class="section-title"><span class="section-icon">1</span> Controller メソッド一覧</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">TaskController <span class="required">必須</span></div>
+            <div class="fill-hint">タスク管理コントローラーの全メソッド</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド名</th>
+                    <th>HTTP</th>
+                    <th>URL</th>
+                    <th>引数</th>
+                    <th>戻り値</th>
+                    <th>処理概要</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr class="template-row">
+                    <td>list</td>
+                    <td>GET</td>
+                    <td>/tasks</td>
+                    <td>Model model</td>
+                    <td>String</td>
+                    <td>タスク一覧を取得してModelに追加し、list.htmlを返却</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>detail</td>
+                    <td>GET</td>
+                    <td>/tasks/{id}</td>
+                    <td>@PathVariable Long id, Model model</td>
+                    <td>String</td>
+                    <td>ID指定でタスクを取得し、Modelに追加してdetail.htmlを返却</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>showCreateForm</td>
+                    <td>GET</td>
+                    <td>/tasks/new</td>
+                    <td>Model model</td>
+                    <td>String</td>
+                    <td>空のTaskFormをModelに追加し、form.html（新規作成画面）を表示</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>create</td>
+                    <td>POST</td>
+                    <td>/tasks</td>
+                    <td>@Valid @ModelAttribute TaskForm form, BindingResult result, RedirectAttributes
+                      redirectAttributes</td>
+                    <td>String</td>
+                    <td>バリデーション後、エラーがあればform.htmlを再表示、正常時は登録して一覧へリダイレクト</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>showEditForm</td>
+                    <td>GET</td>
+                    <td>/tasks/{id}/edit</td>
+                    <td>@PathVariable Long id, Model model</td>
+                    <td>String</td>
+                    <td>既存データを取得してTaskFormに詰め、form.html（編集画面）を表示</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>update</td>
+                    <td>POST</td>
+                    <td>/tasks/{id}</td>
+                    <td>@PathVariable Long id, @Valid @ModelAttribute TaskForm form, BindingResult result,
+                      RedirectAttributes redirectAttributes</td>
+                    <td>String</td>
+                    <td>バリデーション後、エラーがあれば編集画面を再表示、正常時は更新して詳細または一覧へリダイレクト</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>delete</td>
+                    <td>POST</td>
+                    <td>/tasks/{id}/delete</td>
+                    <td>@PathVariable Long id, RedirectAttributes redirectAttributes</td>
+                    <td>String</td>
+                    <td>指定IDのタスクを削除し、一覧画面へリダイレクト</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>search</td>
+                    <td>GET</td>
+                    <td>/tasks/search</td>
+                    <td>@RequestParam String keyword, Model model</td>
+                    <td>String</td>
+                    <td>キーワードでタスクを検索し、結果を一覧画面に表示</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>changeStatus</td>
+                    <td>POST</td>
+                    <td>/tasks/{id}/status</td>
+                    <td>@PathVariable Long id, @RequestParam String status, RedirectAttributes redirectAttributes</td>
+                    <td>String</td>
+                    <td>タスクのステータスを変更し、一覧または詳細画面へリダイレクト</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+
+
+          <section class="section" id="sec2">
+            <h2 class="section-title"><span class="section-icon">2</span> Service メソッド一覧</h2>
+
+            <div class="fill-block">
+              <div class="fill-label">TaskService <span class="required">必須</span></div>
+              <div class="fill-hint">タスクサービスの全メソッド</div>
+              <div class="fill-content">
+                <table class="doc-table">
+                  <thead>
+                    <tr>
+                      <th>メソッド名</th>
+                      <th>引数</th>
+                      <th>戻り値</th>
+                      <th>処理概要</th>
+                      <th>呼び出すRepository</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="template-row">
+                      <td>findAll</td>
+                      <td>なし</td>
+                      <td>List&lt;Task&gt;</td>
+                      <td>全タスクを取得</td>
+                      <td>taskMapper.selectAll()</td>
+                    </tr>
+                    <tr class="template-row">
+                      <td>findById</td>
+                      <td>Long id</td>
+                      <td>Task</td>
+                      <td>ID指定でタスクを取得</td>
+                      <td>taskMapper.selectById(id)</td>
+                    </tr>
+                    <tr class="template-row">
+                      <td>findByUserId</td>
+                      <td>Long userId</td>
+                      <td>List&lt;Task&gt;</td>
+                      <td>ユーザー別タスク取得</td>
+                      <td>taskMapper.selectByUserId(userId)</td>
+                    </tr>
+                    <tr class="template-row">
+                      <td>create</td>
+                      <td>TaskForm form, Long userId</td>
+                      <td>void</td>
+                      <td>FormからEntityに変換して登録</td>
+                      <td>taskMapper.insert(task)</td>
+                    </tr>
+                    <tr class="template-row">
+                      <td>update</td>
+                      <td>Long id, TaskForm form</td>
+                      <td>void</td>
+                      <td>既存タスクを更新</td>
+                      <td>taskMapper.update(task)</td>
+                    </tr>
+                    <tr class="template-row">
+                      <td>delete</td>
+                      <td>Long id</td>
+                      <td>void</td>
+                      <td>タスクを削除</td>
+                      <td>taskMapper.delete(id)</td>
+                    </tr>
+                    <tr class="template-row">
+                      <td>search</td>
+                      <td>String keyword</td>
+                      <td>List&lt;Task&gt;</td>
+                      <td>キーワードでタスク検索</td>
+                      <td>taskMapper.search(keyword)</td>
+                    </tr>
+                    <tr class="template-row">
+                      <td>changeStatus</td>
+                      <td>Long id, String status</td>
+                      <td>void</td>
+                      <td>タスクのステータス変更</td>
+                      <td>taskMapper.updateStatus(id, status)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+
+
+            <section class="section" id="sec3">
+              <h2 class="section-title"><span class="section-icon">3</span> Repository メソッド一覧</h2>
+
+              <div class="fill-block">
+                <div class="fill-label">TaskMapper <span class="required">必須</span></div>
+                <div class="fill-hint">タスクマッパーの全メソッド</div>
+                <div class="fill-content">
+                  <table class="doc-table">
+                    <thead>
+                      <tr>
+                        <th>メソッド名</th>
+                        <th>引数</th>
+                        <th>戻り値</th>
+                        <th>SQL種別</th>
+                        <th>備考</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="template-row">
+                        <td>selectAll</td>
+                        <td>なし</td>
+                        <td>List&lt;Task&gt;</td>
+                        <td>SELECT</td>
+                        <td>全件取得。作成日時降順やID降順で並び替える想定</td>
+                      </tr>
+                      <tr class="template-row">
+                        <td>selectById</td>
+                        <td>Long id</td>
+                        <td>Task</td>
+                        <td>SELECT</td>
+                        <td>主キーで1件取得。該当なしの場合はnull想定</td>
+                      </tr>
+                      <tr class="template-row">
+                        <td>selectByUserId</td>
+                        <td>Long userId</td>
+                        <td>List&lt;Task&gt;</td>
+                        <td>SELECT</td>
+                        <td>ユーザー単位で取得。作成日時降順や期限昇順で並び替える想定</td>
+                      </tr>
+                      <tr class="template-row">
+                        <td>insert</td>
+                        <td>Task task</td>
+                        <td>void</td>
+                        <td>INSERT</td>
+                        <td>@Insertで新規登録。title, content, due_date, priority, status, user_id, created_at, updated_atを保存
+                        </td>
+                      </tr>
+                      <tr class="template-row">
+                        <td>update</td>
+                        <td>Task task</td>
+                        <td>void</td>
+                        <td>UPDATE</td>
+                        <td>@Updateで主キー指定更新。updated_atも更新対象に含める想定</td>
+                      </tr>
+                      <tr class="template-row">
+                        <td>delete</td>
+                        <td>Long id</td>
+                        <td>void</td>
+                        <td>DELETE</td>
+                        <td>主キーで削除。物理削除想定</td>
+                      </tr>
+                      <tr class="template-row">
+                        <td>search</td>
+                        <td>String keyword</td>
+                        <td>List&lt;Task&gt;</td>
+                        <td>SELECT</td>
+                        <td>タイトルや内容を対象にLIKE検索。部分一致検索（例: CONCAT('%', #{keyword}, '%')）想定</td>
+                      </tr>
+                      <tr class="template-row">
+                        <td>updateStatus</td>
+                        <td>Long id, String status</td>
+                        <td>void</td>
+                        <td>UPDATE</td>
+                        <td>ステータスのみ更新。updated_atも同時更新する想定</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+
+
+
+              <section class="section" id="sec4">
+                <h2 class="section-title"><span class="section-icon">4</span> 共通処理・ユーティリティ</h2>
+
+                <div class="fill-block">
+                  <div class="fill-label">日付変換・フォーマット <span class="optional">任意</span></div>
+                  <div class="fill-hint">日付関連のユーティリティメソッド</div>
+                  <div class="fill-content">
+                    <table class="doc-table">
+                      <thead>
+                        <tr>
+                          <th>処理</th>
+                          <th>使用クラス/メソッド</th>
+                          <th>変換元</th>
+                          <th>変換先</th>
+                          <th>用途</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="template-row">
+                          <td>文字列→日付</td>
+                          <td>LocalDate.parse()</td>
+                          <td>String "2026-01-15"</td>
+                          <td>LocalDate</td>
+                          <td>フォーム入力値の変換</td>
+                        </tr>
+                        <tr class="template-row">
+                          <td>日付→文字列</td>
+                          <td>DateTimeFormatter</td>
+                          <td>LocalDate</td>
+                          <td>String "2026/01/15"</td>
+                          <td>画面表示用</td>
+                        </tr>
+                        <tr class="template-row">
+                          <td>現在日時取得</td>
+                          <td>LocalDateTime.now()</td>
+                          <td>-</td>
+                          <td>LocalDateTime</td>
+                          <td>作成日時・更新日時</td>
+                        </tr>
+                        <tr class="template-row">
+                          <td>現在日付取得</td>
+                          <td>LocalDate.now()</td>
+                          <td>-</td>
+                          <td>LocalDate</td>
+                          <td>当日日付の取得</td>
+                        </tr>
+                        <tr class="template-row">
+                          <td>日付表示変換</td>
+                          <td>#temporals.format()</td>
+                          <td>LocalDate</td>
+                          <td>String "2026/01/15"</td>
+                          <td>Thymeleaf画面表示</td>
+                        </tr>
+                        <tr class="template-row">
+                          <td>日時表示変換</td>
+                          <td>#temporals.format()</td>
+                          <td>LocalDateTime</td>
+                          <td>String "2026/01/15 10:30"</td>
+                          <td>Thymeleaf日時表示</td>
+                        </tr>
+                        <tr class="template-row">
+                          <td>自動型変換</td>
+                          <td>@DateTimeFormat</td>
+                          <td>String "2026-01-15"</td>
+                          <td>LocalDate</td>
+                          <td>Springの入力変換</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
