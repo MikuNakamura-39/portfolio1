@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クラス構成図 - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <button class="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" data-nav-level="design"></aside>
+
+    <main class="main-content">
+      <header class="doc-header">
+        <div class="doc-category">DESIGN DOCUMENT</div>
+        <h1 class="doc-title">クラス構成図</h1>
+        <div class="doc-meta">
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-19</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：ナカムラ</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+        </div>
+      </header>
+
+      <div class="doc-body">
+
+        <div class="toc">
+          <div class="toc-title">目次</div>
+          <ol class="toc-list">
+            <li><a href="#sec1">パッケージ構成</a></li>
+            <li><a href="#sec2">Entity（エンティティ）</a></li>
+            <li><a href="#sec3">Repository（リポジトリ）</a></li>
+            <li><a href="#sec4">Service（サービス）</a></li>
+            <li><a href="#sec5">Controller（コントローラー）</a></li>
+            <li><a href="#sec6">クラス間の依存関係</a></li>
+          </ol>
+        </div>
+
+        <section class="section" id="sec1">
+          <h2 class="section-title"><span class="section-icon">1</span> パッケージ構成</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">ディレクトリ構造 <span class="required">必須</span></div>
+            <div class="fill-hint">src/main/java以下のパッケージ構造</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <p>
+                  com.example.taskapp<br>
+                  ├── config<br>
+                  │　└── SecurityConfig.java　　　　// Spring Securityの設定（認証・認可、ログイン設定など）<br>
+                  │　└── WebConfig.java　　　　　　// MVC設定（ViewResolverやInterceptorなど）<br>
+                  │<br>
+                  ├── controller<br>
+                  │　└── TaskController.java　　　// タスク関連の画面制御（一覧・登録・編集・削除）<br>
+                  │　└── UserController.java　　　// ユーザー管理機能の制御<br>
+                  │　└── AuthController.java　　　// ログイン・ログアウト処理の制御<br>
+                  │<br>
+                  ├── service<br>
+                  │　└── TaskService.java　　　　// タスクの業務ロジック（取得・登録・更新・削除）<br>
+                  │　└── UserService.java　　　　// ユーザーの業務ロジック<br>
+                  │　└── AuthService.java　　　　// 認証関連の処理（必要に応じて）<br>
+                  │<br>
+                  ├── repository<br>
+                  │　└── TaskMapper.java　　　　// タスクテーブルへのDBアクセス（MyBatis）<br>
+                  │　└── UserMapper.java　　　　// ユーザーテーブルへのDBアクセス（MyBatis）<br>
+                  │<br>
+                  ├── entity<br>
+                  │　└── Task.java　　　　　　　// タスクテーブルに対応するエンティティクラス<br>
+                  │　└── User.java　　　　　　　// ユーザーテーブルに対応するエンティティクラス<br>
+                  │<br>
+                  ├── form<br>
+                  │　└── TaskForm.java　　　　　// タスク入力フォーム（バリデーション付き）<br>
+                  │　└── UserForm.java　　　　　// ユーザー入力フォーム<br>
+                  │　└── LoginForm.java　　　　// ログイン画面用フォームクラス<br>
+                  │<br>
+                  └── resources<br>
+                  　　└── templates<br>
+                  　　　　├── task<br>
+                  　　　　│　├── list.html　　　// タスク一覧画面<br>
+                  　　　　│　├── form.html　　　// タスク登録・編集画面<br>
+                  　　　　│　└── detail.html　　// タスク詳細画面<br>
+                  　　　　├── user<br>
+                  　　　　│　├── list.html　　　// ユーザー一覧画面<br>
+                  　　　　│　└── form.html　　　// ユーザー登録・編集画面<br>
+                  　　　　└── login.html　　　　// ログイン画面<br>
+                </p>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">パッケージの役割 <span class="required">必須</span></div>
+            <div class="fill-hint">各パッケージの責務を説明</div>
+            <div class="fill-content">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>パッケージ</th>
+                    <th>役割</th>
+                    <th>使用するアノテーション</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr class="template-row">
+                    <td>config</td>
+                    <td>アプリケーション全体の設定（セキュリティ、MVC設定など）</td>
+                    <td>@Configuration, @EnableWebSecurity, @Bean</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>controller</td>
+                    <td>HTTPリクエストの受付、画面遷移制御、レスポンス返却</td>
+                    <td>@Controller, @RequestMapping, @GetMapping, @PostMapping</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>service</td>
+                    <td>業務ロジックの実装、トランザクション管理、処理の中核</td>
+                    <td>@Service, @Transactional</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>repository</td>
+                    <td>データベースアクセス（CRUD処理、SQL実行）</td>
+                    <td>@Mapper, @Repository</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>entity</td>
+                    <td>データベーステーブルと対応するドメインオブジェクト</td>
+                    <td>@Data, @Entity（※JPAの場合）</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>form</td>
+                    <td>画面入力データの受け取り、バリデーション定義</td>
+                    <td>@Data, @NotNull, @NotBlank, @Size, @Email</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sec2">
+          <h2 class="section-title"><span class="section-icon">2</span> Entity（エンティティ）</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">Task.java <span class="required">必須</span></div>
+            <div class="fill-hint">タスクエンティティのクラス図</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <p>
+                  +--------------------------------------+<br>
+                  |　　　　　　Task　　　　　　　　　　　|<br>
+                  +--------------------------------------+<br>
+                  | - id　　　　: Long　　　　　　　// 主キー<br>
+                  | - title　　 : String　　　　　　// タイトル<br>
+                  | - content　 : String　　　　　　// 内容<br>
+                  | - dueDate　 : LocalDate　　　　// 期限<br>
+                  | - priority　: Integer　　　　　// 優先度<br>
+                  | - status　　: String　　　　　 // 状態<br>
+                  | - userId　　: Long　　　　　　// ユーザーID（外部キー）<br>
+                  | - createdAt : LocalDateTime　// 作成日時<br>
+                  | - updatedAt : LocalDateTime　// 更新日時<br>
+                  +--------------------------------------+<br>
+                  | + getter/setter　　　　　　　　　　 |<br>
+                  | + toString()　　　　　　　　　　　 |<br>
+                  | + equals()/hashCode()　　　　　　 |<br>
+                  +--------------------------------------+<br>
+                  | &lt;&lt;Lombok&gt;&gt;　　　　　　　　　　　 |<br>
+                  | @Data　　　　　　　　　　　　　　　|<br>
+                  | @NoArgsConstructor　　　　　　　 |<br>
+                  | @AllArgsConstructor　　　　　　　 |<br>
+                  | @Builder（必要に応じて）　　　　 |<br>
+                  +--------------------------------------+<br>
+                </p>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">User.java <span class="required">必須</span></div>
+            <div class="fill-hint">ユーザーエンティティのクラス図</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <p>
+                  ┌────────────────────────────────────────┐<br>
+                  │ 《Entity》　　　　　　　　　　　　　 │<br>
+                  │ User　　　　　　　　　　　　　　　　│<br>
+                  ├────────────────────────────────────────┤<br>
+                  │ - id　　　　: Long　　　　　　　　　│<br>
+                  │ - email　　 : String　　　　　　　 │<br>
+                  │ - password　: String　　　　　　　 │<br>
+                  │ - name　　　: String　　　　　　　 │<br>
+                  │ - role　　　: String　　　　　　　 │<br>
+                  │ - enabled　 : Boolean　　　　　　　│<br>
+                  │ - createdAt : LocalDateTime　　　　│<br>
+                  │ - updatedAt : LocalDateTime　　　　│<br>
+                  ├────────────────────────────────────────┤<br>
+                  │ + getter/setter　　　　　　　　　　 │<br>
+                  │ + toString()　　　　　　　　　　　 │<br>
+                  │ + equals()/hashCode()　　　　　　 │<br>
+                  ├────────────────────────────────────────┤<br>
+                  │ 《Lombok》　　　　　　　　　　　　 │<br>
+                  │ @Data　　　　　　　　　　　　　　 │<br>
+                  │ @NoArgsConstructor　　　　　　　 │<br>
+                  │ @AllArgsConstructor　　　　　　　 │<br>
+                  │ @Builder　　　　 │<br>
+                  └────────────────────────────────────────┘<br>
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">Category.java <span class="optional">任意</span></div>
+            <div class="fill-hint">カテゴリエンティティのクラス図</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <p>
+                  ┌────────────────────────────────────────┐<br>
+                  │ 《Entity》　　　　　　　　　　　　　 │<br>
+                  │ Category　　　　　　　　　　　　　 │<br>
+                  ├────────────────────────────────────────┤<br>
+                  │ - id　　　: Long　　　　　　　　　 │<br>
+                  │ - name　　: String　　　　　　　 │<br>
+                  │ - color　 : String　　　　　　　 │<br>
+                  │ - userId　: Long　　　　　　　　 │<br>
+                  ├────────────────────────────────────────┤<br>
+                  │ + getter/setter　　　　　　　　　　 │<br>
+                  │ + toString()　　　　　　　　　　　 │<br>
+                  │ + equals()/hashCode()　　　　　　 │<br>
+                  ├────────────────────────────────────────┤<br>
+                  │ 《Lombok》　　　　　　　　　　　　 │<br>
+                  │ @Data　　　　　　　　　　　　　　 │<br>
+                  │ @NoArgsConstructor　　　　　　　 │<br>
+                  │ @AllArgsConstructor　　　　　　　 │<br>
+                  │ @Builder（必要に応じて）　　　　 │<br>
+                  └────────────────────────────────────────┘<br>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sec3">
+          <h2 class="section-title"><span class="section-icon">3</span> Repository（リポジトリ）</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">TaskMapper.java <span class="required">必須</span></div>
+            <div class="fill-hint">タスクリポジトリのインターフェース定義</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <p>
+                  ┌────────────────────────────────────────────────┐<br>
+                  │ 《Interface》　　　　　　　　　　　　　　　 │<br>
+                  │ TaskMapper　　　　　　　　　　　　　　　 │<br>
+                  │ @Mapper　　　　　　　　　　　　　　　　 │<br>
+                  ├────────────────────────────────────────────────┤<br>
+                  │ + selectAll(): List&lt;Task&gt;　　　　　　　 │<br>
+                  │ + selectById(id: Long): Task　　　　　　 │<br>
+                  │ + selectByUserId(userId: Long): List&lt;Task&gt; │<br>
+                  │ + insert(task: Task): void　　　　　　　 │<br>
+                  │ + update(task: Task): void　　　　　　　 │<br>
+                  │ + delete(id: Long): void　　　　　　　　│<br>
+                  │ + search(keyword: String): List&lt;Task&gt;　 │<br>
+                  └────────────────────────────────────────────────┘<br>
+                </p>
+
+              </div>
+            </div>
+            <div class="fill-content" style="margin-top: 16px;">
+              <table class="doc-table">
+                <thead>
+                  <thead>
+                    <tr>
+                      <th>メソッド</th>
+                      <th>引数</th>
+                      <th>戻り値</th>
+                      <th>SQL種別</th>
+                      <th>説明</th>
+                    </tr>
+                  </thead>
+                <tbody>
+
+                  <tr class="template-row">
+                    <td>selectAll</td>
+                    <td>なし</td>
+                    <td>List&lt;Task&gt;</td>
+                    <td>SELECT</td>
+                    <td>全タスクを取得する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>selectById</td>
+                    <td>id: Long</td>
+                    <td>Task</td>
+                    <td>SELECT</td>
+                    <td>IDを指定してタスクを取得する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>selectByUserId</td>
+                    <td>userId: Long</td>
+                    <td>List&lt;Task&gt;</td>
+                    <td>SELECT</td>
+                    <td>ユーザーIDに紐づくタスク一覧を取得する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>insert</td>
+                    <td>task: Task</td>
+                    <td>void</td>
+                    <td>INSERT</td>
+                    <td>新しいタスクを登録する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>update</td>
+                    <td>task: Task</td>
+                    <td>void</td>
+                    <td>UPDATE</td>
+                    <td>既存のタスク情報を更新する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>delete</td>
+                    <td>id: Long</td>
+                    <td>void</td>
+                    <td>DELETE</td>
+                    <td>IDを指定してタスクを削除する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>search</td>
+                    <td>keyword: String</td>
+                    <td>List&lt;Task&gt;</td>
+                    <td>SELECT</td>
+                    <td>キーワードに一致するタスクを検索する</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="section" id="sec4">
+          <h2 class="section-title"><span class="section-icon">4</span> Service（サービス）</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">TaskService.java <span class="required">必須</span></div>
+            <div class="fill-hint">タスクサービスのクラス定義</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <p> ┌────────────────────────────────────────────────────────────┐<br> │ 《Service》　　　　　　　　　　　　　　　　　　　　　
+                  │<br> │ TaskService　　　　　　　　　　　　　　　　　　　　 │<br> │ @Service　　　　　　　　　　　　　　　　　　　　　　 │<br>
+                  ├────────────────────────────────────────────────────────────┤<br> │ - taskMapper :
+                  TaskMapper　　　　　　　　　　　　　　 │<br> ├────────────────────────────────────────────────────────────┤<br> │ +
+                  findAll(): List&lt;Task&gt;　　　　　　　　　　　　　　 │<br> │ + findById(id: Long): Task　　　　　　　　　　　　　 │<br> │ +
+                  findByUserId(userId: Long): List&lt;Task&gt;　　　　　 │<br> │ + create(form: TaskForm): void　　　　　　　　　　　
+                  │<br> │ + update(id: Long, form: TaskForm): void　　　　　　 │<br> │ + delete(id: Long): void　　　　　　　　　　　　　　
+                  │<br> │ + search(keyword: String): List&lt;Task&gt;　　　　　　 │<br> │ + changeStatus(id: Long, status:
+                  String): void　　　 │<br> │ - convertToEntity(form: TaskForm): Task　　　　　　 │<br> │ - mergeToEntity(form:
+                  TaskForm, task: Task): void　 │<br> ├────────────────────────────────────────────────────────────┤<br>
+                  │ 《依存》　　　　　　　　　　　　　　　　　　　　　　 │<br> │ TaskMapper を利用してDBアクセスを行う　　　　　　　 │<br>
+                  ├────────────────────────────────────────────────────────────┤<br> │ 《Transactional》　　　　　　　　　　　　　　　　　
+                  │<br> │ @Transactional：create, update, delete, changeStatus │<br> │ （登録・更新・削除・状態変更で使用）　　　　　　　　 │<br>
+                  └────────────────────────────────────────────────────────────┘<br> </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sec5">
+          <h2 class="section-title"><span class="section-icon">5</span> Controller（コントローラー）</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">TaskController.java <span class="required">必須</span></div>
+            <div class="fill-hint">タスクコントローラーのクラス定義</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <p> ┌────────────────────────────────────────────────────────────┐<br> │ 《Service》　　　　　　　　　　　　　　　　　　　　　
+                  │<br> │ TaskService　　　　　　　　　　　　　　　　　　　　 │<br> │ @Service　　　　　　　　　　　　　　　　　　　　　　 │<br>
+                  ├────────────────────────────────────────────────────────────┤<br> │ - taskMapper :
+                  TaskMapper　　　　　　　　　　　　　　 │<br> ├────────────────────────────────────────────────────────────┤<br> │ +
+                  findAll(): List&lt;Task&gt;　　　　　　　　　　　　　　 │<br> │ + findById(id: Long): Task　　　　　　　　　　　　　 │<br> │ +
+                  findByUserId(userId: Long): List&lt;Task&gt;　　　　　 │<br> │ + create(form: TaskForm): void　　　　　　　　　　　
+                  │<br> │ + update(id: Long, form: TaskForm): void　　　　　　 │<br> │ + delete(id: Long): void　　　　　　　　　　　　　　
+                  │<br> │ + search(keyword: String): List&lt;Task&gt;　　　　　　 │<br> │ + changeStatus(id: Long, status:
+                  String): void　　　 │<br> │ - convertToEntity(form: TaskForm): Task　　　　　　 │<br> │ - mergeToEntity(form:
+                  TaskForm, task: Task): void　 │<br> ├────────────────────────────────────────────────────────────┤<br>
+                  │ 《依存》　　　　　　　　　　　　　　　　　　　　　　 │<br> │ TaskMapper を利用してDBアクセスを行う　　　　　　　 │<br>
+                  ├────────────────────────────────────────────────────────────┤<br> │ 《Transactional》　　　　　　　　　　　　　　　　　
+                  │<br> │ @Transactional：create, update, delete, changeStatus │<br> │ （登録・更新・削除・状態変更で使用）　　　　　　　　 │<br>
+                  └────────────────────────────────────────────────────────────┘<br> </p>
+              </div>
+            </div>
+            <div class="fill-content" style="margin-top: 16px;">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>メソッド</th>
+                    <th>HTTP</th>
+                    <th>URL</th>
+                    <th>説明</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr class="template-row">
+                    <td>list</td>
+                    <td>GET</td>
+                    <td>/tasks</td>
+                    <td>タスク一覧を表示する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>detail</td>
+                    <td>GET</td>
+                    <td>/tasks/{id}</td>
+                    <td>ID指定でタスク詳細を表示する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>showCreateForm</td>
+                    <td>GET</td>
+                    <td>/tasks/new</td>
+                    <td>タスク新規作成画面を表示する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>create</td>
+                    <td>POST</td>
+                    <td>/tasks/create</td>
+                    <td>新規タスクを登録する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>showEditForm</td>
+                    <td>GET</td>
+                    <td>/tasks/{id}/edit</td>
+                    <td>タスク編集画面を表示する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>update</td>
+                    <td>POST</td>
+                    <td>/tasks/{id}/update</td>
+                    <td>タスク情報を更新する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>delete</td>
+                    <td>POST</td>
+                    <td>/tasks/{id}/delete</td>
+                    <td>タスクを削除する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>search</td>
+                    <td>GET</td>
+                    <td>/tasks/search</td>
+                    <td>キーワードでタスクを検索する</td>
+                  </tr>
+
+                  <tr class="template-row">
+                    <td>changeStatus</td>
+                    <td>POST</td>
+                    <td>/tasks/{id}/status</td>
+                    <td>タスクのステータスを変更する</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="section" id="sec6">
+          <h2 class="section-title"><span class="section-icon">6</span> クラス間の依存関係</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">依存関係図 <span class="required">必須</span></div>
+            <div class="fill-hint">Controller → Service → Repository → Entity の依存関係</div>
+            <div class="fill-content">
+              <div class="ascii-diagram">
+                <p> ┌──────────────────────────────────────────────────────────────────────┐<br> │ Spring Boot
+                  Application（DIコンテナ / @Autowired 注入）　　　 │<br>
+                  └──────────────────────────────────────────────────────────────────────┘<br> <br> 【Controller層】<br>
+                  ┌──────────────────────┐　　　┌──────────────────────┐<br> │ TaskController │　　　│ UserController │<br>
+                  └──────────┬───────────┘　　　└──────────┬───────────┘<br> 　　　　　│ @Autowired　　　　　　　　　　　 │ @Autowired<br>
+                  　　　　　v　　　　　　　　　　　　　　　 v<br> ┌──────────────────────┐　　　┌──────────────────────┐<br> │ TaskService
+                  │　　　│ UserService │<br> └──────────────────────┘　　　└──────────────────────┘<br> 　　　　　▲<br> 　　　　　│
+                  フォーム受け取り（@Valid）<br> ┌──────────────────────┐<br> │ TaskForm │<br> │ title / content / dueDate /
+                  priority / status │<br> └──────────────────────┘<br> <br> 【Service層】<br>
+                  ┌──────────────────────┐　　　┌──────────────────────┐<br> │ TaskService │　　　│ UserService │<br>
+                  └──────────┬───────────┘　　　└──────────┬───────────┘<br> 　　　　　│ @Autowired　　　　　　　　　　　 │ @Autowired<br>
+                  　　　　　v　　　　　　　　　　　　　　　 v<br> ┌──────────────────────┐　　　┌──────────────────────┐<br> │ TaskMapper │　　　│
+                  UserMapper │<br> └──────────────────────┘　　　└──────────────────────┘<br> 　　　　　│<br> 　　　　　│ TaskForm →
+                  Task 変換<br> 　　　　　v<br> ┌──────────────────────┐<br> │ Task（Entity） │<br> └──────────────────────┘<br>
+                  <br> 【Repository層】<br> ┌──────────────────────┐　　　┌──────────────────────┐<br> │ TaskMapper │　　　│
+                  UserMapper │<br> └──────────┬───────────┘　　　└──────────┬───────────┘<br> 　　　　　│ SQL実行　　　　　　　　　　　 │
+                  SQL実行<br> 　　　　　└───────────┬──────────────┘<br> 　　　　　　　　　　　v<br> 　　　　　　　┌──────────────────────┐<br>
+                  　　　　　　　│ Database │<br> 　　　　　　　└──────────────────────┘<br> <br> 【Entity】<br>
+                  ┌──────────────────────┐　┌──────────────────────┐　┌──────────────────────┐<br> │ Task │　│ User │　│
+                  Category │<br> │ id / title / content │　│ id / email / name │　│ id / name / color │<br> │ dueDate /
+                  status │　│ role / enabled │　│ userId │<br> │ userId / timestamps │　│ timestamps
+                  │　└──────────────────────┘<br> └──────────────────────┘　└──────────────────────┘<br> <br>
+                  【依存関係まとめ】<br> TaskController →（@Autowired）→ TaskService →（@Autowired）→ TaskMapper → Database<br>
+                  　　　　│　　　　　　　　　　　　│<br> 　　　　└── TaskForm受け取り ─→ Task変換 ─→ Entity保存<br> <br> UserController
+                  →（@Autowired）→ UserService →（@Autowired）→ UserMapper → Database<br>
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">DI（依存性注入）の仕組み <span class="optional">任意</span></div>
+            <div class="fill-hint">Spring BootにおけるDIの説明</div>
+            <div class="fill-content">
+              <div class="code-block">
+                <span class="annotation">@Service</span>
+                <span class="keyword">public class</span> TaskService {
+
+                <span class="keyword">private final</span> TaskMapper taskMapper;
+
+                <span class="comment">// コンストラクタインジェクション（推奨）</span>
+                <span class="annotation">@Autowired</span>
+                <span class="keyword">public</span> TaskService(TaskMapper taskMapper) {
+                <span class="keyword">this</span>.taskMapper = taskMapper;
+                }
+
+                <span class="comment">// ビジネスロジックメソッド</span>
+                <span class="keyword">public</span> List&lt;Task&gt; findAll() {
+                <span class="keyword">return</span> taskMapper.selectAll();
+                }
+                }
+              </div>
+              <p style="font-size: 13px; color: var(--text-light); margin-top: 12px;">
+                Spring Bootでは、@Autowiredアノテーションを使用してDIコンテナからBeanを注入します。
+                コンストラクタインジェクションが推奨されており、テスタビリティが向上します。
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
