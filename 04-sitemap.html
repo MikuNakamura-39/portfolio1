@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サイトマップ - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <button class="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" data-nav-level="docs"></aside>
+
+    <main class="main-content">
+      <header class="doc-header">
+        <div class="doc-category">DOCUMENT 04</div>
+        <h1 class="doc-title">サイトマップ</h1>
+        <div class="doc-meta">
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-02-25</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：ナカムラ</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+        </div>
+      </header>
+
+      <div class="doc-body">
+
+
+
+        <div class="toc">
+          <div class="toc-title">目次</div>
+          <ol class="toc-list">
+            <li><a href="#sec1">サイト構造図</a></li>
+            <li><a href="#sec2">ページ一覧</a></li>
+            <li><a href="#sec3">ユーザーフロー</a></li>
+            <li><a href="#sec4">URL設計</a></li>
+          </ol>
+        </div>
+
+        <section class="section" id="sec1">
+          <h2 class="section-title"><span class="section-icon">1</span> サイト構造図</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">Webサイト構造図 <span class="required">必須</span></div>
+            <div class="fill-hint">トップページから下層ページまでの階層構造をツリー形式で記載</div>
+            <div class="fill-content">
+
+              <p>トップページ</p>
+              <p> ├ ワークショップ詳細ページ</p>
+              <p> │ ├ 体験の流れ</p>
+              <p> │ ├ 香料の種類</p>
+              <p> │ ├ 所要時間</p>
+              <p> │ ├ 料金概要</p>
+              <p> │ ├ 完成イメージ</p>
+              <p> │ └ スタッフのサポート内容</p>
+
+              <p> ├ 料金・プランページ</p>
+              <p> │ ├ プラン一覧</p>
+              <p> │ ├ 含まれる内容</p>
+              <p> │ ├ ペア料金</p>
+              <p> │ └ キャンセルポリシー</p>
+
+              <p> ├ How It Works（ご利用の流れ）</p>
+              <p> │ ├ 予約</p>
+              <p> │ ├ 香り選び</p>
+              <p> │ ├ 調香体験</p>
+              <p> │ ├ 香水の完成</p>
+              <p> │ └ 持ち帰り</p>
+
+              <p> ├ 体験ストーリーページ</p>
+              <p> │ ├ カップル向け体験</p>
+              <p> │ ├ 女子旅向け体験</p>
+              <p> │ ├ 1人参加向け体験</p>
+              <p> │ ├ 利用シーン写真</p>
+              <p> │ └ 体験レビュー</p>
+
+              <p> ├ 予約ページ</p>
+              <p> │ ├ 空き状況カレンダー</p>
+              <p> │ ├ 予約フォーム</p>
+              <p> │ └ 予約完了</p>
+
+              <p> ├ アクセス・店舗情報ページ</p>
+              <p> │ ├ 地図</p>
+              <p> │ ├ 最寄駅案内</p>
+              <p> │ ├ 営業時間</p>
+              <p> │ └ 連絡先</p>
+
+              <p> └ FAQページ</p>
+              <p> ├ 初心者でも大丈夫か</p>
+              <p> ├ 所要時間</p>
+              <p> ├ 持ち物</p>
+              <p> ├ 支払い方法</p>
+              <p> └ 予約変更方法</p>
+            </div>
+
+          </div>
+          <div class="fill-block">
+            <div class="fill-label">Webアプリケーション構造図 <span class="required">必須</span></div>
+            <div class="fill-hint">Spring Bootアプリケーションの画面構造をツリー形式で記載</div>
+            <div class="fill-content">
+              <p>【システム概要】</p>
+              <p>香水作り体験ワークショップの運営を管理するSpring Bootベースの管理システム。予約・顧客・枠（スケジュール）・スタッフ・コンテンツを一元管理し、検索・集計・通知・権限管理を行う。</p>
+              <p>【ログイン前】</p>
+              <p>ログイン前</p>
+              <p>├── ログイン</p>
+              <p>│ ├── ログインフォーム（ID/パスワード）</p>
+              <p>│ └── ログインエラー表示</p>
+              <p>├── パスワード再設定</p>
+              <p>│ ├── 再設定メール送信</p>
+              <p>│ └── 新パスワード設定</p>
+              <p>├── 利用規約</p>
+              <p>├── プライバシーポリシー</p>
+              <p>└── お問い合わせ</p>
+              <p>【ログイン後】</p>
+              <p>ログイン後</p>
+              <p>├── ダッシュボード</p>
+              <p>│ ├── 本日の予約一覧</p>
+              <p>│ ├── 直近の空き枠</p>
+              <p>│ ├── KPI（予約数/キャンセル率/売上）</p>
+              <p>│ └── お知らせ</p>
+              <p>├── 予約管理（CRUD）</p>
+              <p>│ ├── 予約一覧</p>
+              <p>│ │ ├── 検索（日時/ステータス/顧客/人数/チャネル）</p>
+              <p>│ │ ├── 一括操作（ステータス変更/エクスポート）</p>
+              <p>│ │ └── 予約詳細</p>
+              <p>│ ├── 予約登録（新規）</p>
+              <p>│ ├── 予約編集</p>
+              <p>│ └── 予約キャンセル（取消・返金情報）</p>
+              <p>├── 枠・スケジュール管理（CRUD）</p>
+              <p>│ ├── カレンダー表示（日/週/月）</p>
+              <p>│ ├── 枠一覧</p>
+              <p>│ │ ├── 検索（期間/スタッフ/枠種別/受付可否）</p>
+              <p>│ │ └── 枠詳細</p>
+              <p>│ ├── 枠作成</p>
+              <p>│ ├── 枠編集</p>
+              <p>│ └── 枠停止・復活</p>
+              <p>├── 顧客管理（CRUD）</p>
+              <p>│ ├── 顧客一覧</p>
+              <p>│ │ ├── 検索（氏名/電話/メール/来店履歴/タグ）</p>
+              <p>│ │ └── 顧客詳細（予約履歴/メモ）</p>
+              <p>│ ├── 顧客登録</p>
+              <p>│ ├── 顧客編集</p>
+              <p>│ └── 顧客削除</p>
+              <p>├── 商品・メニュー管理（CRUD）</p>
+              <p>│ ├── コース一覧</p>
+              <p>│ ├── コース登録</p>
+              <p>│ ├── コース編集</p>
+              <p>│ └── 価格・所要時間設定</p>
+              <p>├── コンテンツ管理（追加機能）</p>
+              <p>│ ├── お知らせ管理（CRUD）</p>
+              <p>│ ├── FAQ管理（CRUD）</p>
+              <p>│ └── LP/バナー管理（CRUD）</p>
+              <p>├── スタッフ管理（CRUD）</p>
+              <p>│ ├── スタッフ一覧</p>
+              <p>│ ├── スタッフ登録</p>
+              <p>│ ├── スタッフ編集</p>
+              <p>│ └── 権限設定（管理者/スタッフ/閲覧）</p>
+              <p>├── 通知・メッセージ（追加機能）</p>
+              <p>│ ├── テンプレート管理（メール/LINE）</p>
+              <p>│ ├── 送信履歴</p>
+              <p>│ └── 手動送信（顧客/予約宛）</p>
+              <p>├── レポート・集計（追加機能）</p>
+              <p>│ ├── 予約数推移</p>
+              <p>│ ├── キャンセル率</p>
+              <p>│ ├── チャネル別集計</p>
+              <p>│ └── CSVエクスポート</p>
+              <p>├── システム設定</p>
+              <p>│ ├── 店舗情報（営業時間/住所）</p>
+              <p>│ ├── 予約受付設定（締切/定員）</p>
+              <p>│ ├── キャンセルポリシー設定</p>
+              <p>│ └── 外部連携設定（予約サイト/GA/メール）</p>
+              <p>└── アカウント</p>
+              <p> ├── プロフィール</p>
+              <p> ├── パスワード変更</p>
+              <p> └── ログアウト</p>
+            </div>
+
+          </div>
+
+        </section>
+
+        <section class="section" id="sec2">
+          <h2 class="section-title"><span class="section-icon">2</span> ページ一覧</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">Webサイト ページ一覧 <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>ページ名</th>
+                  <th>ページの目的</th>
+                  <th>主要コンテンツ</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr class="template-row">
+                  <td>1</td>
+                  <td>トップページ</td>
+                  <td>サービスの世界観を伝え、ユーザーを予約ページへ誘導する</td>
+                  <td>キャッチコピー、体験写真、サービス特徴紹介、参加者の声、初心者歓迎訴求、予約ボタン</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>2</td>
+                  <td>ワークショップ詳細ページ</td>
+                  <td>体験内容を具体的に説明し、参加イメージを明確にする</td>
+                  <td>体験の流れ、香料の種類、所要時間、料金概要、完成イメージ、スタッフのサポート内容</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>3</td>
+                  <td>料金・プランページ</td>
+                  <td>料金情報を明確にし、価格への納得感を高める</td>
+                  <td>プラン一覧、含まれる内容、ペア料金、キャンセルポリシー</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>4</td>
+                  <td>How It Works（ご利用の流れ）</td>
+                  <td>体験の流れをステップ形式で説明し、参加への不安を減らす</td>
+                  <td>予約、香り選び、調香体験、香水の完成、持ち帰り</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>5</td>
+                  <td>体験ストーリー</td>
+                  <td>体験談や利用シーンを紹介し、自分ごと化を促す</td>
+                  <td>カップル向け提案、女子旅向け提案、1人参加向け提案、利用シーン写真、体験レビュー、SNS投稿例</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>6</td>
+                  <td>予約ページ</td>
+                  <td>予約フォームを通して体験予約を完了させる</td>
+                  <td>空き状況カレンダー、予約フォーム、注意事項、予約完了メッセージ</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>7</td>
+                  <td>アクセス・店舗情報ページ</td>
+                  <td>店舗へのアクセス情報を提供し来店時の不安を減らす</td>
+                  <td>地図、最寄駅案内、営業時間、連絡先、周辺スポット情報</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>8</td>
+                  <td>FAQページ</td>
+                  <td>参加前の疑問や不安を解消する</td>
+                  <td>初心者でも大丈夫か、所要時間、持ち物、支払い方法、予約変更方法</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">Webアプリ 画面一覧 <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>画面名</th>
+                  <th>画面の目的</th>
+                  <th>主要機能</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="template-row">
+                  <td>1</td>
+                  <td>ログインページ</td>
+                  <td>管理者・スタッフの認証</td>
+                  <td>ログインフォーム、パスワード再設定リンク、エラーメッセージ</td>
+                </tr>
+                <tr class="template-row">
+                  <td>2</td>
+                  <td>ダッシュボード</td>
+                  <td>全体状況の把握</td>
+                  <td>本日の予約一覧、KPI（予約数・売上）、空き状況、通知</td>
+                </tr>
+                <tr class="template-row">
+                  <td>3</td>
+                  <td>予約管理ページ</td>
+                  <td>予約のCRUD操作</td>
+                  <td>予約一覧、検索フィルター、予約詳細、編集・キャンセル</td>
+                </tr>
+                <tr class="template-row">
+                  <td>4</td>
+                  <td>スケジュール管理ページ</td>
+                  <td>予約枠の管理</td>
+                  <td>カレンダー表示、枠作成・編集、受付停止設定</td>
+                </tr>
+                <tr class="template-row">
+                  <td>5</td>
+                  <td>顧客管理ページ</td>
+                  <td>顧客情報の管理</td>
+                  <td>顧客一覧、検索、顧客詳細、来店履歴、メモ</td>
+                </tr>
+                <tr class="template-row">
+                  <td>6</td>
+                  <td>メニュー・料金管理ページ</td>
+                  <td>体験プランの管理</td>
+                  <td>プラン一覧、価格設定、所要時間設定、表示・非表示切替</td>
+                </tr>
+                <tr class="template-row">
+                  <td>7</td>
+                  <td>レポート・分析ページ</td>
+                  <td>経営状況の可視化</td>
+                  <td>月別予約数、キャンセル率、チャネル別分析、CSV出力</td>
+                </tr>
+                <tr class="template-row">
+                  <td>8</td>
+                  <td>通知・テンプレート管理</td>
+                  <td>顧客連絡の効率化</td>
+                  <td>メールテンプレート、送信履歴、リマインド設定</td>
+                </tr>
+                <tr class="template-row">
+                  <td>9</td>
+                  <td>システム設定ページ</td>
+                  <td>全体設定管理</td>
+                  <td>店舗情報設定、予約条件設定、権限管理</td>
+                </tr>
+                <tr class="template-row">
+                  <td>10</td>
+                  <td>アカウント管理ページ</td>
+                  <td>個人設定管理</td>
+                  <td>プロフィール編集、パスワード変更、ログアウト</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </section>
+
+        <section class="section" id="sec3">
+          <h2 class="section-title"><span class="section-icon">3</span> ユーザーフロー</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">メインシナリオ <span class="required">必須</span></div>
+            <div class="fill-hint">ペルソナがサイトに訪問してから目的を達成するまでの動線（メインの行動パターン）</div>
+            <div class="fill-content">
+              <p>【ペルソナ】</p>
+              <p>田中さくら（23歳・受付）</p>
+              <p>目的：普段香水は愛用しているが、自分で作ったことはない。初めて香水作り体験をしてみたいと思い検索。</p>
+              <p>【行動フロー】</p>
+              <p>ステップ（行動/表示ページ/次のアクション）</p>
+              <p>1　（「香水作り体験 東京」「オリジナル香水 作れる」で検索/Google検索結果/気になったサイトをクリック）</p>
+              <p>2　（トップページを見て雰囲気を確認/トップページ/体験詳細ページへ移動）</p>
+              <p>3　（どんな香りが作れるのか確認/ワークショップ詳細ページ/制作工程や香料の種類を見る）</p>
+              <p>4　（完成イメージを確認/体験写真・完成ボトル紹介/参加者の声を見る）</p>
+              <p>5　（他の人の体験談を読む/参加者の声ページ/「自分も作れそう」と感じる）</p>
+              <p>6　（料金と所要時間を確認/料金・プランページ/日程が合うか考える）</p>
+              <p>7　（実際に行ける日を探す/予約ページ（空きカレンダー）/空き日をクリック）</p>
+              <p>8　（予約情報を入力/予約フォーム/予約確定ボタンを押す）</p>
+              <p>9　（予約完了メールを確認/完了ページ・確認メール/当日を楽しみにする）</p>
+              <p>10（ワークショップ当日参加/店舗/香水作り体験を楽しむ）</p>
+            </div>
+
+          </div>
+
+
+        </section>
+
+        <section class="section" id="sec4">
+          <h2 class="section-title"><span class="section-icon">4</span> URL設計</h2>
+
+          <div class="fill-block">
+            <div class="fill-label">Webサイト（公開側） <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>URL</th>
+                  <th>HTTPメソッド</th>
+                  <th>画面/機能</th>
+                  <th>説明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="template-row">
+                  <td>/</td>
+                  <td>GET</td>
+                  <td>トップページ</td>
+                  <td>サイト入口。サービスの世界観を伝え、各導線から予約ページへ誘導する</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/workshop</td>
+                  <td>GET</td>
+                  <td>ワークショップ詳細ページ</td>
+                  <td>体験内容、香料の種類、所要時間、料金概要、完成イメージ、サポート内容を表示する</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/pricing</td>
+                  <td>GET</td>
+                  <td>料金・プランページ</td>
+                  <td>プラン一覧、含まれる内容、ペア料金、キャンセルポリシーを表示する</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/how-it-works</td>
+                  <td>GET</td>
+                  <td>How It Works（ご利用の流れ）</td>
+                  <td>予約から持ち帰りまでの流れをステップ形式で説明する</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/stories</td>
+                  <td>GET</td>
+                  <td>体験ストーリーページ</td>
+                  <td>カップル、女子旅、1人参加などの体験談や利用シーンを紹介する</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/reservation</td>
+                  <td>GET</td>
+                  <td>予約ページ</td>
+                  <td>空き状況、予約フォーム、注意事項を表示し、予約完了へ導く</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/access</td>
+                  <td>GET</td>
+                  <td>アクセス・店舗情報ページ</td>
+                  <td>地図、最寄駅案内、営業時間、連絡先、周辺スポット情報を表示する</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/faq</td>
+                  <td>GET</td>
+                  <td>FAQページ</td>
+                  <td>初心者対応、所要時間、持ち物、支払い方法、予約変更方法などの疑問を解消する</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+            <div class="fill-label">Spring Boot管理アプリ（管理側）— 画面URL（/admin）<span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>URL</th>
+                  <th>HTTPメソッド</th>
+                  <th>画面/機能</th>
+                  <th>説明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="template-row">
+                  <td>/admin/login</td>
+                  <td>GET</td>
+                  <td>ログイン画面</td>
+                  <td>ログインフォーム表示</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/login</td>
+                  <td>POST</td>
+                  <td>ログイン処理</td>
+                  <td>認証処理</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/logout</td>
+                  <td>POST</td>
+                  <td>ログアウト</td>
+                  <td>セッション破棄</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/dashboard</td>
+                  <td>GET</td>
+                  <td>ダッシュボード</td>
+                  <td>本日の予約・KPI・通知を表示</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/bookings</td>
+                  <td>GET</td>
+                  <td>予約一覧</td>
+                  <td>検索・フィルタ付きの予約一覧</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/bookings/{bookingId}</td>
+                  <td>GET</td>
+                  <td>予約詳細</td>
+                  <td>予約詳細を表示</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/bookings/new</td>
+                  <td>GET</td>
+                  <td>予約新規</td>
+                  <td>管理側で予約を登録するフォーム</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/bookings</td>
+                  <td>POST</td>
+                  <td>予約作成</td>
+                  <td>管理側で予約を新規作成</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/bookings/{bookingId}/edit</td>
+                  <td>GET</td>
+                  <td>予約編集</td>
+                  <td>予約編集フォーム</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/bookings/{bookingId}</td>
+                  <td>POST</td>
+                  <td>予約更新</td>
+                  <td>予約内容の更新</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/bookings/{bookingId}/cancel</td>
+                  <td>POST</td>
+                  <td>予約キャンセル</td>
+                  <td>予約ステータスをキャンセルに変更</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/content/header</td>
+                  <td>GET</td>
+                  <td>ヘッダー/導線設定</td>
+                  <td>固定CTA・メニュー導線を管理</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/content/cta</td>
+                  <td>GET</td>
+                  <td>CTA管理</td>
+                  <td>追従予約ボタン等の設定</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/content/flows</td>
+                  <td>GET</td>
+                  <td>当日の流れ管理</td>
+                  <td>ステップ内容の管理</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/content/faqs</td>
+                  <td>GET</td>
+                  <td>FAQ管理</td>
+                  <td>FAQの作成・編集・削除</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/content/media</td>
+                  <td>GET</td>
+                  <td>画像管理</td>
+                  <td>完成ボトル・体験写真の管理</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/content/lps</td>
+                  <td>GET</td>
+                  <td>LP管理</td>
+                  <td>カップル/女子旅LPの管理</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/experiments</td>
+                  <td>GET</td>
+                  <td>ABテスト管理</td>
+                  <td>価格表示/コピーABの設定</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/settings/forms</td>
+                  <td>GET</td>
+                  <td>フォーム設定</td>
+                  <td>予約フォームの項目構成・必須設定</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/analytics</td>
+                  <td>GET</td>
+                  <td>分析</td>
+                  <td>GA/ヒートマップの確認・集計</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/marketing/ads</td>
+                  <td>GET</td>
+                  <td>広告設定</td>
+                  <td>リマーケ施策の設定情報管理</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/admin/marketing/social</td>
+                  <td>GET</td>
+                  <td>SNS運用管理</td>
+                  <td>Instagram投稿計画・投稿ログ</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="fill-label"> Spring Boot管理アプリ（管理側）— REST API（/api/v1）<span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>URL</th>
+                  <th>HTTPメソッド</th>
+                  <th>画面/機能</th>
+                  <th>説明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="template-row">
+                  <td>/api/v1/auth/login</td>
+                  <td>POST</td>
+                  <td>認証</td>
+                  <td>ログイン（トークン/セッション発行）</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/auth/logout</td>
+                  <td>POST</td>
+                  <td>認証</td>
+                  <td>ログアウト</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/bookings</td>
+                  <td>GET</td>
+                  <td>予約検索</td>
+                  <td>条件検索（日時/ステータス/顧客/人数/チャネル）</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/bookings</td>
+                  <td>POST</td>
+                  <td>予約作成</td>
+                  <td>予約新規作成</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/bookings/{bookingId}</td>
+                  <td>GET</td>
+                  <td>予約取得</td>
+                  <td>予約詳細取得</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/bookings/{bookingId}</td>
+                  <td>PATCH</td>
+                  <td>予約更新</td>
+                  <td>予約情報の部分更新</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/bookings/{bookingId}/cancel</td>
+                  <td>POST</td>
+                  <td>予約キャンセル</td>
+                  <td>キャンセル処理（ステータス遷移）</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/content/navigation</td>
+                  <td>GET</td>
+                  <td>導線設定取得</td>
+                  <td>ヘッダー/メニュー/固定CTAの取得</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/content/navigation</td>
+                  <td>PATCH</td>
+                  <td>導線設定更新</td>
+                  <td>固定CTA・メニュー導線の更新</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/content/ctas</td>
+                  <td>GET</td>
+                  <td>CTA取得</td>
+                  <td>追従予約ボタン等の一覧取得</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/content/ctas</td>
+                  <td>POST</td>
+                  <td>CTA作成</td>
+                  <td>CTAの新規作成</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/content/ctas/{ctaId}</td>
+                  <td>PATCH</td>
+                  <td>CTA更新</td>
+                  <td>文言・リンク先等の更新</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/content/flows</td>
+                  <td>GET</td>
+                  <td>当日の流れ取得</td>
+                  <td>ステップ情報の取得</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/content/flows</td>
+                  <td>POST</td>
+                  <td>当日の流れ作成</td>
+                  <td>ステップの追加</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/content/flows/{flowId}</td>
+                  <td>PATCH</td>
+                  <td>当日の流れ更新</td>
+                  <td>ステップの編集</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/content/faqs</td>
+                  <td>GET</td>
+                  <td>FAQ一覧</td>
+                  <td>FAQの取得</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/content/faqs</td>
+                  <td>POST</td>
+                  <td>FAQ作成</td>
+                  <td>FAQの追加</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/content/faqs/{faqId}</td>
+                  <td>PATCH</td>
+                  <td>FAQ更新</td>
+                  <td>FAQの更新</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/content/faqs/{faqId}</td>
+                  <td>DELETE</td>
+                  <td>FAQ削除</td>
+                  <td>FAQの削除</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/media</td>
+                  <td>GET</td>
+                  <td>画像一覧</td>
+                  <td>画像メタデータの取得</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/media</td>
+                  <td>POST</td>
+                  <td>画像アップロード</td>
+                  <td>完成ボトル・体験写真のアップロード</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/lps</td>
+                  <td>GET</td>
+                  <td>LP一覧</td>
+                  <td>ターゲット別LPの一覧取得</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/lps</td>
+                  <td>POST</td>
+                  <td>LP作成</td>
+                  <td>LPの新規作成</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/lps/{lpId}</td>
+                  <td>PATCH</td>
+                  <td>LP更新</td>
+                  <td>LPの編集</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/experiments</td>
+                  <td>GET</td>
+                  <td>ABテスト一覧</td>
+                  <td>価格表示AB/コピーABの一覧取得</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/experiments</td>
+                  <td>POST</td>
+                  <td>ABテスト作成</td>
+                  <td>ABテストの新規作成</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/experiments/{expId}</td>
+                  <td>PATCH</td>
+                  <td>ABテスト更新</td>
+                  <td>配信割合・文言差分などの更新</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/form-config</td>
+                  <td>GET</td>
+                  <td>フォーム設定取得</td>
+                  <td>予約フォーム項目の取得（簡略化用）</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/form-config</td>
+                  <td>PATCH</td>
+                  <td>フォーム設定更新</td>
+                  <td>入力項目のON/OFFや必須設定の更新</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/tracking/events</td>
+                  <td>POST</td>
+                  <td>計測イベント保存</td>
+                  <td>独自イベントログ保存（任意）</td>
+                </tr>
+
+                <tr class="template-row">
+                  <td>/api/v1/marketing/ads/retargeting</td>
+                  <td>PATCH</td>
+                  <td>リマーケ設定</td>
+                  <td>リマーケ用設定（任意）</td>
+                </tr>
+                <tr class="template-row">
+                  <td>/api/v1/marketing/social/posts</td>
+                  <td>POST</td>
+                  <td>SNS投稿記録</td>
+                  <td>Instagram投稿ログ保存（任意）</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
